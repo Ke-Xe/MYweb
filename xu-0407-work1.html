@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name | About</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      /* Apple 极淡径向渐变背景，高级低对比底色 */
+      background: radial-gradient(circle at top center, #ffffff 0%, #f7f7f9 100%);
+      color: #1d1d1f;
+      line-height: 1.47;
+      font-weight: 400;
+    }
+
+    /* 顶部导航栏 苹果极简固定导航 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 22px 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.72);
+    }
+    .nav-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding:0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo {
+      font-size:18px;
+      font-weight:500;
+      letter-spacing: -0.3px;
+    }
+    .nav-links a {
+      margin-left:32px;
+      text-decoration:none;
+      color:#424245;
+      font-size:14px;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color:#1d1d1f;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero首屏 */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 60px;
+    }
+    .hero h1 {
+      font-size: 64px;
+      font-weight: 500;
+      letter-spacing: -0.8px;
+      margin-bottom:16px;
+    }
+    .hero .en-sub {
+      font-size:22px;
+      color:#86868b;
+      font-weight:400;
+      letter-spacing: 0.4px;
+      margin-bottom:24px;
+    }
+    .hero .slogan {
+      font-size:26px;
+      font-weight:400;
+      color:#333;
+      margin-bottom:90px;
+    }
+    .scroll-tip {
+      color:#86868b;
+      font-size:14px;
+      letter-spacing:0.5px;
+    }
+
+    /* 区块基础样式 & 苹果缓动动画，只淡入+极微小上移 */
+    section {
+      padding:140px 0;
+      opacity:0;
+      transform: translateY(18px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    section.active {
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-size:17px;
+      color:#86868b;
+      letter-spacing: 1px;
+      margin-bottom:36px;
+    }
+
+    .about p {
+      font-size:21px;
+      max-width:740px;
+      margin-bottom:22px;
+      color:#1d1d1f;
+      font-weight:400;
+    }
+
+    /* 技能三列卡片 苹果质感，极轻微hover */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:52px;
+    }
+    .skill-card {
+      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+    }
+    .skill-card h3 {
+      font-size:23px;
+      font-weight:500;
+      margin-bottom:14px;
+      letter-spacing:-0.3px;
+    }
+    .skill-card p {
+      color:#424245;
+      font-size:17px;
+      line-height:1.55;
+    }
+
+    /* 座右铭居中区块 */
+    .motto {
+      text-align:center;
+    }
+    .motto p {
+      font-size:25px;
+      margin-bottom:18px;
+      color:#1d1d1f;
+    }
+
+    .future p {
+      font-size:21px;
+      max-width:740px;
+      color:#1d1d1f;
+    }
+
+    /* 页脚 */
+    footer {
+      padding:70px 0;
+      text-align:center;
+      color:#86868b;
+      font-size:14px;
+      opacity:0;
+      transform: translateY(16px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+                  transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    footer.active {
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* 移动端响应式 */
+    @media (max-width:768px) {
+      .hero h1 {
+        font-size:44px;
+      }
+      .skill-grid {
+        grid-template-columns: 1fr;
+        gap:40px;
+      }
+      section {
+        padding:100px 0;
+      }
+      .nav-links a {
+        margin-left:16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <nav>
+    <div class="nav-wrap">
+      <div class="nav-logo">Name</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#motto">Motto</a>
+        <a href="#future">Future</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero首屏 -->
+  <section class="hero" style="opacity:1;transform:none;">
+    <h1>Hello, I'm 徐克</h1>
+    <div class="en-sub">Computer Science · Sophomore</div>
+    <div class="slogan">以代码筑梦，以专注成长。</div>
+    <div class="scroll-tip">Scroll to explore</div>
+  </section>
+
+  <div class="container">
+    <section id="about" class="about">
+      <div class="section-title">About Me</div>
+      <p>我是一名在读大二计算机科学与技术专业学生。</p>
+      <p>在代码与逻辑的世界里，保持纯粹的好奇心与耐心。不追逐速成，重视底层原理，在编写、调试、重构中持续打磨自己。</p>
+      <p>代码之美在于简洁，工程之重在严谨。坚持理论与实践并行，在持续的输入与输出中构建稳定、扎实的技术体系。</p>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">Learning & Skills</div>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h3>01 专业基础</h3>
+          <p>深耕数据结构、操作系统、计算机网络。掌握 C/C++、Python、Java，注重理解底层逻辑，不局限于语法使用。</p>
+        </div>
+        <div class="skill-card">
+          <h3>02 项目实践</h3>
+          <p>参与课程项目与小型开发，练习需求拆解、代码实现与团队协作，将理论落地为可运行程序。</p>
+        </div>
+        <div class="skill-card">
+          <h3>03 自主学习</h3>
+          <p>主动拓展前后端、开发工具与工程化知识，持续更新认知，保持稳定的学习节奏。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="motto" class="motto">
+      <div class="section-title">Motto</div>
+      <p>静心深耕，循序渐进。</p>
+      <p>代码逐行打磨，能力日积月累。</p>
+      <p>不畏路远，但求踏实。</p>
+    </section>
+
+    <section id="future" class="future">
+      <div class="section-title">Future</div>
+      <p>现阶段夯实计算机基础，强化算法与工程实践能力，积累项目与竞赛经历。持续深耕技术领域，向着成熟开发者稳步前行。</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>Keep Coding, Keep Growing.</p>
+    <p style="margin-top:8px;">© 2026 Name. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // 只触发一次动画，不会反复播放
+        }
+      })
+    }, {threshold:0.1});
+
+    document.querySelectorAll('section:not(.hero), footer').forEach(el => {
+      observer.observe(el);
+    })
+  </script>
+</body>
+</html>
